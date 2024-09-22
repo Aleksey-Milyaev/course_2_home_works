@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "home-work-9-1"
+version = "0.1.0"
+description = ""
+authors = ["aleksey milyaev <trane94.milyaev@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.lint.dependencies]
+black = "^24.8.0"
+isort = "^5.13.2"
+mypy = "^1.11.2"
+flake8 = "^7.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = 'venv'
+
+[tool.black]
+line-length = 119
+exclude = '''
+(
+  /(
+    | \.git
+  )/
+)
+'''
+
+[tool.isort]
+line_length = 119
