@@ -12,7 +12,11 @@ def transaction_descriptions(transactions: list) -> object:
     """Функция генератор, который принимает список словарей с транзакциями и возвращает описание каждой операции по
     очереди."""
     description = (transaction["description"] for transaction in transactions)
-    return description
+    description_list = list(description)
+    count = -1
+    while True:
+        count += 1
+        yield description_list[count]
 
 
 def card_number_generator(start: int = 1, stop: int = 9999_9999_9999_9999) -> object:
