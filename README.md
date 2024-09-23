@@ -1,4 +1,4 @@
-# cours_2_home_work
+# course_2_home_works
 
 ## Описание
 
