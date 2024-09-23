@@ -1,5 +1,10 @@
-def filter_by_state(operations: list, state: str = "EXECUTED") -> list:
+from typing import Any
+
+
+def filter_by_state(operations: Any = 0, state: str = "EXECUTED") -> str | list:
     """Функция принимающая список операций и возвращающая новый список операций со значением 'state'."""
+    if operations == 0:
+        return "Данные небыли переданы"
     processed_operation_list = []
     for operation in operations:
         if operation["state"] == state:
