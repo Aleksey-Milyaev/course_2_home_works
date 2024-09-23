@@ -23,6 +23,3 @@ def get_mask_account(account_number: int = 0) -> str:
     account_number_format = "**" + account_number_string[-4:]
 
     return account_number_format
-
-print(get_mask_card_number(7000792289606361))
-print(get_mask_card_number(700079228960636157))
