@@ -1,5 +1,4 @@
 import os
-from datetime import datetime
 from typing import Any
 
 from src.decorators import log
@@ -15,15 +14,8 @@ def test_log_complete() -> Any:
     my_function(1, 2)
     path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "testlog.txt")
     with open(path, encoding="utf8") as file:
-        content = file.read()
-    assert (
-        content
-        == f"""Функция: my_function
-начало работы функции: {datetime.now().time().strftime("%H:%M:%S")}
-Результат: 3
-Конец работы функции: {datetime.now().time().strftime("%H:%M:%S")}
-"""
-    )
+        content = file.readlines()
+    assert content[-1] == "my_function ok\n"
 
 
 def test_log_argument_error() -> Any:
@@ -31,13 +23,10 @@ def test_log_argument_error() -> Any:
     my_function(1)
     path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "testlog.txt")
     with open(path, encoding="utf8") as file:
-        content = file.read()
+        content = file.readlines()
     assert (
-        content
-        == """Функция: my_function
-Тип ошибки: my_function() missing 1 required positional argument: 'y'
-Входные данные: ((1,), {})
-"""
+        content[-1]
+        == "my_function error: my_function() missing 1 required positional argument: 'y'. Inputs:((1,), {})\n"
     )
 
 
@@ -50,11 +39,4 @@ def test_log(capsys: Any) -> Any:
 
     my_function_(1, 2)
     capture = capsys.readouterr()
-    assert (
-        capture.out
-        == f"""Функция: my_function_
-начало работы функции: {datetime.now().time().strftime("%H:%M:%S")}
-Результат: 3
-Конец работы функции: {datetime.now().time().strftime("%H:%M:%S")}
-\n"""
-    )
+    assert capture.out == "my_function_ ok\n\n"
