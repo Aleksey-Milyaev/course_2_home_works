@@ -1,5 +1,4 @@
 import csv
-import os
 
 import pandas as pd
 
@@ -23,6 +22,3 @@ def read_operation_xlsx(file_path: str = "") -> list:
         return transactions_dict
     except FileNotFoundError:
         return []
-
-
-print(read_operation_xlsx(os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "transactions_excel.xlsx")))
