@@ -7,8 +7,11 @@ def filter_by_state(operations: Any = 0, state: str = "EXECUTED") -> str | list:
         return "Данные небыли переданы"
     processed_operation_list = []
     for operation in operations:
-        if operation["state"] == state:
-            processed_operation_list.append(operation)
+        try:
+            if operation["state"] == state:
+                processed_operation_list.append(operation)
+        except KeyError:
+            continue
 
     return processed_operation_list
 

@@ -4,8 +4,12 @@ import random
 def filter_by_currency(transaction: list, currency: str) -> object:
     """Функция, возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
-    filter_transactions = filter(lambda y: y["operationAmount"]["currency"]["code"] == currency, transaction)
-    return filter_transactions
+    try:
+        filter_transactions = list(filter(lambda y: y["operationAmount"]["currency"]["code"] == currency, transaction))
+        return filter_transactions
+    except KeyError:
+        filter_transactions = list(filter(lambda y: y["currency_code"] == currency, transaction))
+        return filter_transactions
 
 
 def transaction_descriptions(transactions: list) -> object:
