@@ -1,18 +1,20 @@
-from collections import defaultdict
+from collections import Counter
 from typing import Any
 
 
 def sorting_by_key(transactions: list, description: list) -> Any:
     """Функция сортировки транзакций по ключу 'description'."""
     try:
+
         description = [word.lower() for word in description]
-        sorting_dict: dict = defaultdict(dict)
+        description_list = []
         for transaction in transactions:
             try:
                 if transaction["description"].lower() in description:
-                    sorting_dict[transaction["description"]] = transaction
+                    description_list.append(transaction["description"])
             except KeyError:
                 continue
-        return dict(sorting_dict)
+        counted_description = Counter(description_list)
+        return counted_description
     except Exception as es:
         print(f"Ошибка {es}")

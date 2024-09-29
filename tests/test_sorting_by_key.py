@@ -46,13 +46,5 @@ def transactions():
 
 def test_sorting_by_key(transactions):
     """Тест функции сортировки транзакций по ключу 'description'"""
-    assert sorting_by_key(transactions, ["Открытие вклада"]) == {
-        "Открытие вклада": {
-            "date": "2018-03-23T10:45:06.972075",
-            "description": "Открытие вклада",
-            "id": 587085106,
-            "operationAmount": {"amount": "48223.05", "currency": {"code": "RUB", "name": "руб."}},
-            "state": "EXECUTED",
-            "to": "Счет 41421565395219882431",
-        }
-    }
+    assert (sorting_by_key(transactions, ["Открытие вклада", "Перевод организации"]) ==
+            {'Перевод организации': 3, 'Открытие вклада': 1})
